@@ -22,6 +22,7 @@ namespace BestsellerDemo
         {
             services.AddSingleton<IDataAccess, FileReader>();
             services.AddSingleton<IProductRepository, ProductRepository>();
+            services.AddSingleton<ICategoryRepository, CategoryRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

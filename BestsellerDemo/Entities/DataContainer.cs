@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BestsellerDemo.Entities
 {
-    public class Container
+    public class DataContainer
     {
         public IEnumerable<Product> Products { get; set; }
         [JsonProperty("categories")]

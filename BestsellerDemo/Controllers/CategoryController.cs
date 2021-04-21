@@ -1,22 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BestsellerDemo.Repositories;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace BestsellerDemo.Controllers
 {
     [Route("api/[controller]")]
     public class CategoryController : Controller
     {
-        private readonly IDataAccess _dataAccess;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public CategoryController(IDataAccess dataAccess)
+        public CategoryController(ICategoryRepository categoryRepository)
         {
-            _dataAccess = dataAccess;
+            _categoryRepository = categoryRepository;
         }
 
         [HttpGet("all")]
         public IActionResult GetAll()
         {
-            var categories = _dataAccess.Categories;
+            var categories = _categoryRepository.GetAll();
             return Ok(categories);
+        }
+
+        [HttpGet("{categoryId}")]
+        public IActionResult GetStockForCategory(string categoryId)
+        {
+            var stockCount = _categoryRepository.GetStockForCategory(categoryId);
+            return Ok(stockCount);
         }
     }
 }
